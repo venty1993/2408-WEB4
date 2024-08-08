@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="count"></p>
+
+    <script>
+
+        // p.count 안에
+        // 숫자 0부터 10까지 순차적으로 넣어봅시다
+
+        // 힌트** setTimeout()을 이용해보세요
+
+
+        // 카운트업이 되긴 하나,
+        // 시간을 지정하기가 어렵고
+        // 성능상 매우 비효율적인 형태
+        const count = document.querySelector('.count')
+
+        for(let i = 0 ; i <= 1000000 ; i ++) {
+            setTimeout(()=>{
+                count.innerText = i;
+            },i * 0.01)
+        }
+
+        // setTimeout(()=>{
+        //     count.innerText = 0;
+        // },0)
+        // setTimeout(()=>{
+        //     count.innerText = 1;
+        // },1000)
+        // setTimeout(()=>{
+        //     count.innerText = 2;
+        // },2000)
+
+    
+    </script>
+</body>
+</html>

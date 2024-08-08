@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="count"></p>
+
+    <script>
+        // 유리님아이디어
+        // 재귀함수를통해 한번에 전부 실행하는것이라
+        // 따로따로 실행해줌으로써 처음에 발생하는 로드 성능 이슈를 해결
+        // 하지만 실제로 계산하는 횟수는 변하지 않는다..
+        const count = document.querySelector('.count');
+
+        const goal = 1000000;
+        let countNumber = 0;
+
+        countUp();
+
+        function countUp(){
+            count.innerText = countNumber;
+            countNumber++;
+            if(goal !== countNumber){
+                setTimeout(() => {
+                    countUp();
+                }, 0.01);
+            }
+        }
+    </script>
+</body>
+</html>
