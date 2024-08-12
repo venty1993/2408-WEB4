@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .graph {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: solid black;
+            border-width: 0 0 1px 1px;
+            margin: 100px;
+        }
+
+        .time {
+            position: absolute;
+            right: 0px;
+            top: 100%;
+        }
+
+        .value {
+            position: absolute;
+            right: calc(100% + 5px);
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            transform: translate(-50%,50%);
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="graph">
+        <p class="time">t</p>
+        <p class="value">v</p>
+
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</body>
+</html>
