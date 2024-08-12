@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p class="count"></p>
+
+    <script>
+        const count = document.querySelector('.count')
+        const time = 2;
+        const goal = 100000;
+        const frame = 50;
+        const totalFrame = time * frame;
+
+        // 위의 상수들을 이용해 아래 반복문 수정해보면?
+        // 1초당 재생되는 횟수는 60번으로 제한합니다.
+
+
+        // *힌트 : i <= 100000 대신 i < time * 60 을 넣어볼수 있을것 
+
+        for(let i = 0 ; i <= totalFrame ; i ++) {
+            const 진행도 = i/totalFrame;
+            setTimeout(()=>{
+                count.innerText = parseInt(goal * easeInExpo(진행도));
+            },i/frame * 1000)
+        }
+
+        function easeInOutCubic(x) {
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
+
+        function easeInExpo(x) {
+            return x === 0 ? 0 : Math.pow(2, 10 * x - 10);
+        }
+    </script>
+</body>
+</html>
