@@ -24,14 +24,31 @@
             width: 200px;
             height: 200px;
             background-color: red;
+            left: 50%;
+            top: 50%;
         }
 
         .vinus {
             width: 20px;
             height: 20px;
             background-color: yellow;
+            animation: vinusRevolution 1s infinite linear;
+            transform-origin: 0px calc(200px + 10px);
+            left: 50%;
+            top: 0%;
+
+            /* animation: revolution 2s infinite linear; */
 
         }
+
+        /* @keyframes vinusRevolution {
+            0%{
+                transform: translate(-50%,calc(-50% - 200px)) rotate(0deg);
+            }
+            100%{
+                transform: translate(-50%,calc(-50% - 200px)) rotate(360deg);
+            }
+        } */
 
         @keyframes revolution {
             0%{
@@ -41,14 +58,29 @@
                 transform: translate(-50%,-50%) rotate(360deg);
             }
         }
+
+        .공전궤도 {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            border: 1px solid white;
+            border-radius: 50%;
+            box-sizing: border-box;
+            animation: revolution infinite 3s linear;
+        }
     </style>
 </head>
 <body>
     <div class="sun orb">
 
     </div>
-    <div class="vinus orb">
-
+    <div class="공전궤도">
+        <div class="vinus orb">
+            
+        </div>
     </div>
 </body>
 </html>
