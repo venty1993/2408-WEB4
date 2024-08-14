@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+
+        .content{
+            width: 100px;
+            height: 100px;
+            margin-top: 2000px;
+            background-color: pink;
+            opacity: 0;
+            transform: translateX(200px);
+
+            transition: 0.3s;
+        }
+
+        .content.active{
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content"></div>
+    <script>
+        const content = document.querySelector('.content'); 
+        
+        
+        
+        window.addEventListener('scroll',(e)=>{
+
+            const pos = content.getBoundingClientRect();
+
+            if(pos.top <= window.innerHeight - pos.height){
+                content.classList.add('active');
+                console.log('지금?')
+            }else {
+                content.classList.remove('active');
+            }
+
+        })
+    </script>
+</body>
+</html>

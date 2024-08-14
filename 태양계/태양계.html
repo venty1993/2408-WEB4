@@ -154,17 +154,17 @@
     <script>
 
         // <div class="test" data-number="1" data-time="500"></div>
-        const test = document.querySelector('.test');
-        console.log(Number(test.dataset.time));
+        // const test = document.querySelector('.test');
+        // console.log(Number(test.dataset.time));
         const playRate = 5;
         const revolutions = document.getElementsByClassName('revolution')
 
         // for문을 이용해 레볼루션 컨텐츠들의 animationDuration을 설정 할 수있다.
 
         // revolutions[i].style.animationDuration = `${어떠한값 여기는 연산 가능}s`
-
+        
         for(let i = 0 ; i < revolutions.length ; i++) {
-            revolutions[i].style.animationDuration = `${Number(revolutions[i].dataset.revolution/playRate)}s`
+            revolutions[i].style.animationDuration = `${Number(revolutions[i].dataset.revolution)/playRate}s`
         }
         
     </script>
