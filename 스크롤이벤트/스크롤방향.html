@@ -26,8 +26,17 @@
         // 힌트* 변수는 필요한만큼 만들어도 된다고했습니다!
 
         // 스크롤하면 방향을 콘솔에 '위' , '아래'로 출력하게끔 만들어봅시다.
-        window.addEventListener('scroll',(e)=>{
-            console.log(e)
+
+        let 이전값 = window.scrollY
+        window.addEventListener('scroll',()=>{
+
+            if(window.scrollY > 이전값){
+                console.log('아래');
+            }else {
+                console.log('위');
+            }
+
+            이전값 = window.scrollY
         })
     </script>
 </body>
