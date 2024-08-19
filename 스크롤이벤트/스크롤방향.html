@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 마우스 휠 이벤트에는 방향성이 있어 파악이 용이하나,
+        // 오직 마우스 휠에서만 작동하는것이 문제
+        // window.addEventListener('mousewheel',(e)=>{
+        //     console.log(e);
+        // })
+
+
+        // window.scrollY
+        // 이전값과 현재값을 비교해
+        // 현재값이 더 크면 아래방향스크롤, 작으면 위방향스크롤
+
+        // 힌트* 변수는 필요한만큼 만들어도 된다고했습니다!
+
+        // 스크롤하면 방향을 콘솔에 '위' , '아래'로 출력하게끔 만들어봅시다.
+        window.addEventListener('scroll',(e)=>{
+            console.log(e)
+        })
+    </script>
+</body>
+</html>
