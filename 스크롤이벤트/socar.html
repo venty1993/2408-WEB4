@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            box-sizing: border-box;
+            border-bottom: 1px solid transparent;
+
+            transition: 0.5s;
+        }
+
+        header.hide {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        header.scrolled {
+            background-color: #ffffff80;
+            border-bottom: 1px solid gray;
+        }
+
+        header.scrolled .socar-path{
+            fill: #00b8ff;
+        }
+        
+        header.scrolled .patty {
+            background-color: #00b8ff;
+        }
+
+        .socar-logo {
+            width: 120px;
+        }
+
+        .socar-path {
+            fill: white;
+        }
+
+        #intro {
+            background-image: url(main_visual_fullscreen.jpg);
+            background-size: cover;
+            /* width: 100%; */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hamberger {
+            width: 36px;
+            height: 36px;
+            /* background-color: pink; */
+            padding: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .patty {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .patty:last-child {
+            margin-left: auto;
+        }
+
+        h1 {
+            color: white;
+            font-size: 64px;
+            text-align: center;
+            text-shadow: 1px 1px 8px #00000080;
+        }
+
+        #temp {
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <svg class="socar-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="레이어_1" x="0px" y="0px" viewBox="0 0 159.9 32.7" style="enable-background:new 0 0 159.9 32.7;" xml:space="preserve">
+            <g>
+                <g>
+                    <path class="socar-path" d="M45.4,0.9c-8.5,0-15.5,6.9-15.5,15.5c0,8.5,6.9,15.5,15.5,15.5s15.4-7,15.4-15.5C60.8,7.8,53.9,0.9,45.4,0.9z     M45.4,25.3c-4.9,0-8.9-4-8.9-8.9s4-8.9,8.9-8.9s8.9,4,8.9,8.9C54.3,21.3,50.3,25.3,45.4,25.3z"/>
+                    <g>
+                        <path class="socar-path" d="M8.1,9.5c0-3.6,9.4-3.6,11.4,1l5.3-3C23.4,4,18.1,0.9,12.9,0.9C6.7,0.9,1.5,4.1,1.5,9.8     c0,6.4,7.4,8.1,10.5,8.8s7.2,1.4,7.2,3.9c0,2.4-2.7,3.2-5.6,3.2c-3.7,0-6.6-1.2-7.9-4.1l-5,2.9c1.6,4.5,6.7,7.3,12.8,7.3     c8,0,12.4-3.7,12.4-9.6c0-4.7-4.1-7.6-9-8.8C12.3,12.4,8.1,11.7,8.1,9.5z"/>
+                    </g>
+                    <path class="socar-path" d="M88.9,19.7L88.9,19.7L88.9,19.7c-1.3,3.3-4.2,5.6-8,5.6c-4.9,0-8.8-4-8.8-9c0-4.9,3.8-9,8.8-9    c3.6,0,6.6,2,8,5.1l0,0L94.7,9c-2.4-4.8-7.8-8.1-13.8-8.1c-8.5,0-15.5,6.9-15.5,15.5s6.9,15.5,15.5,15.5c6.1,0,11.3-3.6,13.8-8.7    L88.9,19.7z"/>
+                    <polygon class="socar-path" points="116.3,1.7 109,1.7 97.1,31 104.6,31 112.7,10 121,31 128.5,31   "/>
+                    <path class="socar-path" d="M152.9,20.3l0.6-0.3c2.9-1.7,4.5-4.7,4.5-8.1c0-6-4.4-10.2-10.7-10.2h-14.2V31h6.7v-9.4h6.5l5.4,9.4h7.5    L152.9,20.3z M146.9,15.9h-7.1v-8h7.1c2.6,0,4.4,1.6,4.4,4S149.5,15.9,146.9,15.9z"/>
+                </g>
+            </g>
+        </svg>
+        <div class="hamberger">
+            <span class="patty"></span>
+            <span class="patty"></span>
+        </div>
+    </header>
+
+    <section id="intro">
+        <h1>차가 필요한<br>모든 순간, 쏘카</h1>
+    </section>
+    <section id="temp"></section>
+
+    <script>
+        const header = document.querySelector('header');
+        const ratio = 300;
+
+        let 이전값 = window.scrollY
+        window.addEventListener('scroll',()=>{
+
+            if(window.scrollY > 이전값 && window.scrollY>ratio){
+                header.classList.add('hide')
+            }else {
+                header.classList.remove('hide')
+            }
+
+
+            이전값 = window.scrollY
+
+
+            if(window.scrollY > ratio) {
+                header.classList.add('scrolled')
+            }else {
+                header.classList.remove('scrolled')
+
+            }
+
+        })
+
+
+     </script>
+</body>
+</html>
