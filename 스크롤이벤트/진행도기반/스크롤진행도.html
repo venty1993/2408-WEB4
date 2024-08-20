@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 5000px;
+            background-image: linear-gradient(0deg, #4568DC,#B06AB3);
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .progress {
+            position: fixed;
+            width: 100%;
+            height: 10px;
+            background-color: #ebebeb;
+            top: 0;
+        }
+
+        .bar {
+            height: 100%;
+            /* width: 0%; */
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="bar"></div>
+    </div>
+
+    <script>
+
+        const bar = document.querySelector('.bar');
+
+        getProgress()
+        window.addEventListener('scroll',getProgress);
+        window.addEventListener('resize',getProgress);
+
+        function getProgress(){
+            const 전체길이 = document.body.clientHeight;
+            const 현재스크롤 = window.scrollY;
+
+            const 진행도 = 현재스크롤 / (전체길이 - window.innerHeight);
+            console.log(진행도)
+            bar.style.width = `${진행도*100}%`
+        }
+
+    </script>
+</body>
+</html>

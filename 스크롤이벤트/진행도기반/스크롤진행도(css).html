@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 5000px;
+            background-image: linear-gradient(0deg, #4568DC,#B06AB3);
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .progress {
+            position: fixed;
+            width: 100%;
+            height: 10px;
+            background-color: #ebebeb;
+            top: 0;
+        }
+
+        .bar {
+            height: 100%;
+            background-color: cadetblue;
+
+            animation-name:scroll-progress;
+            animation-timeline: scroll();
+        }
+
+        @keyframes scroll-progress {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="bar"></div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --str-gap: -63px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 64px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .game-board {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .round {
+            width: 120px;
+            /* height: 20px; */
+            /* background-color: pink; */
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+        }
+
+        .now-play .status-light,
+        .now-play .number-place {
+            animation: playing alternate infinite 1s linear;
+        }
+
+        @keyframes playing {
+            from {
+                filter: brightness(1.5);
+            }
+
+            to {
+                filter: brightness(0.5);
+
+            }
+
+        }
+
+        .status {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #333;
+            border-radius: 2px;
+            border-radius: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 14px;
+            box-sizing: border-box;
+            gap: 8px;
+
+        }
+
+        .round:last-child>.status {
+            visibility: hidden;
+        }
+
+        .status-light {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: gray;
+
+        }
+
+        .status-light.strike {
+            background-color: yellow;
+        }
+
+        .status-light.ball {
+            background-color: green;
+        }
+
+
+
+        .number-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #333;
+            padding: 16px;
+            border-radius: 60px;
+            position: relative;
+        }
+
+        .number-container.marking::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 60px;
+            transition: 1s;
+        }
+
+
+        .number-container.marking.open-answer::after {
+            opacity: 0;
+        }
+
+        .number-place {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+            background-color: gray;
+        }
+
+        .number-place.number1 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -26px;
+            background-position-x: calc(var(--str-gap) * 1);
+        }
+
+        .number-place.number2 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -26px;
+            background-position-x: calc(var(--str-gap) * 2);
+        }
+
+        .number-place.number3 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-x: calc(var(--str-gap) * 3);
+            background-position-y: -26px;
+        }
+
+        .number-place.number4 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-x: calc(var(--str-gap) * 4);
+            background-position-y: -26px;
+        }
+
+        .number-place.number5 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+        }
+
+        .number-place.number6 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 1);
+        }
+
+        .number-place.number7 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 2);
+        }
+
+        .number-place.number8 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 3);
+        }
+
+        .number-place.number9 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 4);
+        }
+
+        .number-place.number0 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position: 0px -26px;
+        }
+
+        .contol {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contol button {
+            width: 80px;
+        }
+
+        .control-number-container {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="game-board">
+            <div class="round now-play">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="status">
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                    <div class="status-light"></div>
+                </div>
+                <div class="number-container marking">
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                    <div class="number-place"></div>
+                </div>
+            </div>
+        </div>
+        <div class="contol">
+            <button id="reset">리셋</button>
+            <div class="control-number-container">
+                <div class="number-place number0"></div>
+                <div class="number-place number1"></div>
+                <div class="number-place number2"></div>
+                <div class="number-place number3"></div>
+                <div class="number-place number4"></div>
+                <div class="number-place number5"></div>
+                <div class="number-place number6"></div>
+                <div class="number-place number7"></div>
+                <div class="number-place number8"></div>
+                <div class="number-place number9"></div>
+            </div>
+            <button id="submit">제출</button>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        야구게임();
+
+        function 야구게임() {
+
+
+            const numberButtons = document.querySelectorAll('.control-number-container > .number-place');
+            const rounds = document.getElementsByClassName('round');
+            const resetButton = document.getElementById('reset');
+
+
+            const 입력된숫자 = [];
+            let count = 0;
+            let nowRound = 0
+
+            for (let i = 0; i < numberButtons.length; i++) {
+                numberButtons[i].addEventListener('click', () => {
+                    if (count !== 4) {
+                        rounds[nowRound].children[1].children[count].classList.add(`number${i}`)
+                        입력된숫자.push(i);
+                        count++;
+                    }
+                })
+            }
+
+            window.addEventListener('keyup', (e) => {
+                const inputKeyNumber = Number(e.key);
+                if (inputKeyNumber && count !== 4) {
+                    rounds[nowRound].children[1].children[count].classList.add(`number${inputKeyNumber}`)
+                    입력된숫자.push(inputKeyNumber);
+                    count++;
+
+                }
+
+                if (e.key === 'Enter') {
+                    제출();
+                }
+            })
+
+
+            resetButton.addEventListener('click', () => {
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 10; j++) {
+                        rounds[nowRound].children[1].children[i].classList.remove(`number${j}`)
+                    }
+                }
+                count = 0;
+                입력된숫자.splice(0)
+
+
+            })
+
+            const 정답 = [];
+
+            for (let i = 0; i < 4; i++) {
+                let 난수;
+
+                while (true) {
+                    난수 = Math.floor(Math.random() * 10);
+                    if (정답.indexOf(난수) === -1) {
+                        break;
+                    }
+                }
+                정답.push(난수);
+            }
+            const submitButton = document.getElementById('submit');
+
+            const answer = document.querySelector('.marking');
+
+            submitButton.addEventListener('click', 제출)
+
+            function 제출() {
+                if (입력된숫자.length === 4) {
+
+                    const 적중 = 게임();
+
+                    for (let i = 0; i < 4; i++) {
+                        //[2, 1]
+                        //[스트,스트,볼,x]
+
+                        //앞에 2칸에는 strike 라는 클래스를 넣고
+                        //그다음 1칸에는 ball이라는 클래스를 넣는 방법
+
+                        if (i < 적중[0]) {
+                            rounds[nowRound].children[0].children[i].classList.add(`strike`)
+                        } else if (i < 적중[0] + 적중[1]) {
+                            rounds[nowRound].children[0].children[i].classList.add(`ball`)
+                        }
+                    }
+
+                    if (적중[0] === 4) {
+                        //승리시
+                        정답오픈();
+
+                    } else {
+                        //틀렸을떄
+                        rounds[nowRound].classList.remove('now-play');
+                        nowRound++;
+                        rounds[nowRound].classList.add('now-play');
+                        count = 0;
+                        입력된숫자.splice(0)
+
+                    }
+
+                    if (nowRound === 7) {
+                        정답오픈();
+                    }
+                }
+
+
+                function 정답오픈() {
+                    answer.classList.add('open-answer');
+
+                    for (let i = 0; i < 4; i++) {
+                        answer.children[i].classList.add(`number${정답[i]}`)
+                    }
+                }
+                function 게임() {
+
+                    let 스트라이크 = 0;
+                    let 볼 = 0;
+
+                    for (let i = 0; i < 4; i++) {
+                        if (정답[i] === 입력된숫자[i]) {
+                            스트라이크++;
+                        }
+
+                        for (let j = 0; j < 4; j++) {
+                            if (i !== j && 입력된숫자[i] === 정답[j]) {
+                                볼++;
+                            }
+                        }
+                    }
+
+
+                    return [스트라이크, 볼];
+
+                    // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
+                    // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
+                    // userInput.splice (몇번째거부터,몇개를지울거냐)
+
+
+
+
+                }
+            }
+        }
+
+    </script>
+
+    <!-- <script>
+        // 배열 하나 만들고,
+        // 랜덤한 숫자(0~9)를 4개 넣어주세요.
+        // 배열에 값 추가하기 : 배열.push(추가할값);
+
+
+        const 정답 = [];
+
+        for (let i = 0; i < 4; i++) {
+            let 난수;
+
+            while (true) {
+                난수 = Math.floor(Math.random() * 10);
+                if (정답.indexOf(난수) === -1) {
+                    break;
+                }
+            }
+            정답.push(난수);
+        }
+
+        // console.log(정답)
+
+        for (let i = 0; i < 10; i++) {
+            console.log(`${i + 1}번째 시도입니다.`);
+
+            const 적중 = 게임();
+
+            if (적중 === 4) {
+                console.log('정답!');
+                break;
+            } else if (i === 9) {
+                console.log('패배하셨군요');
+                console.log(`당신이 찾아 헤메던 정답은 ${정답} 입니다 ㅋㅋ`)
+            }
+        }
+
+
+        function 게임() {
+
+            const userInput = [];
+            let 스트라이크 = 0;
+            let 볼 = 0;
+
+            for (let i = 0; i < 4; i++) {
+                userInput.push(Number(prompt('숫자를 입력하세요')));
+            }
+
+            for (let i = 0; i < 4; i++) {
+                if (정답[i] === userInput[i]) {
+                    스트라이크++;
+                }
+
+                for (let j = 0; j < 4; j++) {
+                    if (i !== j && userInput[i] === 정답[j]) {
+                        볼++;
+                    }
+                }
+            }
+
+            console.log(`스트라이크 : ${스트라이크}, 볼: ${볼}`);
+            console.log(userInput);
+
+            return 스트라이크;
+
+            // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
+            // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
+            // userInput.splice (몇번째거부터,몇개를지울거냐)
+
+
+
+
+        }
+
+
+
+
+
+
+
+    </script> -->
+</body>
+
+</html>
