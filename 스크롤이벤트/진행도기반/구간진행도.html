@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .space {
+            height: 2000px;
+        }
+
+        #target {
+            height: 2000px;
+            background-image: linear-gradient(0deg, #4568DC,#B06AB3);
+        }
+        .progress {
+            position: fixed;
+            top: 32px;
+            right: 32px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="space"></div>
+    <section id="target"></section>
+    <div class="space"></div>
+    <div class="progress">0%</div>
+
+    <!-- target이 view에 들어오는 시점부터 0%로 시작해 -->
+     <!-- view에서 사라지는 시점에 100%가 될수 있게끔 -->
+      <!-- progress.innerText를 조절 해봅시다 -->
+</body>
+</html>
