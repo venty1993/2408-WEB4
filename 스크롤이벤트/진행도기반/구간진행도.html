@@ -36,5 +36,25 @@
     <!-- target이 view에 들어오는 시점부터 0%로 시작해 -->
      <!-- view에서 사라지는 시점에 100%가 될수 있게끔 -->
       <!-- progress.innerText를 조절 해봅시다 -->
+
+    <script>
+        const target = document.getElementById('target');
+        const progress = document.querySelector('.progress')
+
+        window.addEventListener('scroll',()=>{
+            const targetPos = target.getBoundingClientRect()
+            // 바닥으로부터 target의 거리
+            const distance = (targetPos.top- window.innerHeight)*-1
+            // distance 기준으로 최댓값(100%가 되는 지점)
+            const maxDistance = targetPos.height + window.innerHeight;
+            const ratio = clamp(distance/maxDistance,0,1)
+            progress.innerText = `${parseInt(ratio*100)}%`
+
+        })
+
+        function clamp(value,min,max){
+            return Math.max(Math.min(value,max),min)
+        }
+    </script>
 </body>
 </html>
