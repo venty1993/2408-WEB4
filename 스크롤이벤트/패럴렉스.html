@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 10000px;
+        }
+
+        #패럴렉스 {
+            width: 5000px;
+            height: 100vh;
+            
+            background-image: linear-gradient(90deg,#000,#fff);
+
+            position: fixed;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <section id="패럴렉스">
+
+    </section>
+
+
+    <script>
+
+        const 섹션 = document.getElementById('패럴렉스');
+        window.addEventListener('scroll', () =>{
+            console.log(섹션);
+            console.log(window.scrollY)
+            섹션.style.transform = `translateX(-${window.scrollY}px)`
+        })
+    </script>
+
+</body>
+</html>
