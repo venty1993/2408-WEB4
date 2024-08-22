@@ -14,6 +14,9 @@
         body {
             height: 10000px;
         }
+        /* body::-webkit-scrollbar {
+            display: none;
+        } */
 
         #패럴렉스 {
             width: 5000px;
@@ -36,11 +39,16 @@
     <script>
 
         const 섹션 = document.getElementById('패럴렉스');
-
-        document.body.style.height = `${???????}px`;
+        const scrollbarWidth = window.innerWidth - document.body.clientWidth
+        
+        document.body.style.height = `${섹션.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+        
+        window.addEventListener('resize',()=>{    
+            document.body.style.height = `${섹션.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+        })
         
         window.addEventListener('scroll', () =>{
-            console.log(섹션);
+
             console.log(window.scrollY)
             섹션.style.transform = `translateX(-${window.scrollY}px)`
         })
