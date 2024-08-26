@@ -18,7 +18,7 @@
             display: none;
         } */
 
-        #패럴렉스 {
+        #가로스크롤 {
             width: 5000px;
             height: 100vh;
             
@@ -31,14 +31,14 @@
     </style>
 </head>
 <body>
-    <section id="패럴렉스">
+    <section id="가로스크롤">
 
     </section>
 
 
     <script>
 
-        const 섹션 = document.getElementById('패럴렉스');
+        const 섹션 = document.getElementById('가로스크롤');
         const scrollbarWidth = window.innerWidth - document.body.clientWidth
         
         document.body.style.height = `${섹션.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;

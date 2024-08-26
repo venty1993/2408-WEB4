@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .space {
+            height: 3000px;
+            background-color: gray;
+        }
+
+        #target {
+        }
+
+        .view {
+            width: 100%;
+            height: 100vh;
+            position: sticky;
+            overflow: hidden;
+            background-color: pink;
+            top: 0px;
+        }
+
+        .horizon {
+            /* width: 5000px; */
+            width: fit-content;
+            height: 100%;
+            background-image: linear-gradient(90deg,#000,#fff);
+        }
+
+        .wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        .content {
+            flex-shrink: 0;
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+
+        @media screen and (max-width:1400px) {
+            #target {
+                height: auto!important;
+            }
+
+            .view {
+                height: auto;
+                position: relative;
+            }
+            .horizon {
+                width: 100%;
+                
+            }
+            .wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="space"></section>
+    <section id="target">
+        <div class="view">
+            <div class="horizon">
+                <ul class="wrapper">
+                    <li class="content"></li>
+                    <li class="content"></li>
+                    <li class="content"></li>
+                    <li class="content"></li>
+                    <li class="content"></li>
+                    <li class="content"></li>
+                    <li class="content"></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="space"></section>
+
+    <script>
+
+        const moveHorizonScroll =()=>{
+
+            const pos = scrollContainer.getBoundingClientRect();
+            const range = window.innerWidth - horizon.clientWidth;
+            let targetPos;
+
+            if(pos.top > 0){
+                targetPos = 0;
+            }else if(pos.top < range) {
+                targetPos = range;
+            }else {
+                targetPos = pos.top;
+            }
+
+            horizon.style.transform = `translateX(${targetPos}px)`
+            }
+
+
+        const scrollContainer = document.getElementById('target');
+        const scrollbarWidth = window.innerWidth - document.body.clientWidth
+        const horizon = document.querySelector('.horizon');
+
+        scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+
+        window.addEventListener('resize',()=>{
+            scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+
+            window.removeEventListener('scroll',moveHorizonScroll)
+            
+            if(window.innerWidth>1400) {
+                window.addEventListener('scroll',moveHorizonScroll)
+            }
+        })
+
+    </script>
+</body>
+</html>
