@@ -69,7 +69,7 @@
     <section id="target">
         <div class="view">
             <div class="horizon">
-                <ul class="wrapper">
+                <!-- <ul class="wrapper"> 가로스크롤 할 컨텐츠
                     <li class="content"></li>
                     <li class="content"></li>
                     <li class="content"></li>
@@ -77,13 +77,28 @@
                     <li class="content"></li>
                     <li class="content"></li>
                     <li class="content"></li>
-                </ul>
+                </ul> -->
+
+                <!-- 
+                #라이브러리화
+
+                나는 실제로 html에 ul>li*n만 작성할것이다.
+                이때 가로스크롤 구현에 필요한
+
+                target, view, horizon는 자동으로 생성 되어야 한다.
+
+                js에는 ul.wrapper만 가져올수 있게
+                -->
             </div>
         </div>
     </section>
     <section class="space"></section>
 
     <script>
+
+        const applyPos = (pos) => {
+            horizon.style.transform = `translateX(${pos}px)`
+        }
 
         const moveHorizonScroll =()=>{
 
@@ -99,24 +114,27 @@
                 targetPos = pos.top;
             }
 
-            horizon.style.transform = `translateX(${targetPos}px)`
+
+            if(window.innerWidth < brakePoint){
+                applyPos(0)
+            }else {
+                applyPos(targetPos)
             }
+        }
 
-
+        const brakePoint = 1400;
         const scrollContainer = document.getElementById('target');
         const scrollbarWidth = window.innerWidth - document.body.clientWidth
         const horizon = document.querySelector('.horizon');
 
-        scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
 
+        moveHorizonScroll()
+
+        scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
+        window.addEventListener('scroll',moveHorizonScroll)
         window.addEventListener('resize',()=>{
             scrollContainer.style.height = `${horizon.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`;
-
-            window.removeEventListener('scroll',moveHorizonScroll)
-            
-            if(window.innerWidth>1400) {
-                window.addEventListener('scroll',moveHorizonScroll)
-            }
+            moveHorizonScroll()
         })
 
     </script>
