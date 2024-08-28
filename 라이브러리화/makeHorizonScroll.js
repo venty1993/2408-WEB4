@@ -1,4 +1,4 @@
-function makeHorizonScroll(target,brakePoint) {
+function makeHorizonScroll(target,breakPoint) {
 
     target.classList.add('horizon-scroll-target');
 
@@ -42,7 +42,7 @@ function makeHorizonScroll(target,brakePoint) {
         }
 
 
-        if(window.innerWidth < brakePoint){
+        if(window.innerWidth < breakPoint){
             applyPos(0)
         }else {
             applyPos(targetPos)
@@ -50,7 +50,7 @@ function makeHorizonScroll(target,brakePoint) {
     }
 
     const checkBreaking = () => {
-        return window.innerWidth < brakePoint ? true : false
+        return window.innerWidth < breakPoint ? true : false
     }
 
     const setCSS = () => {
@@ -61,10 +61,10 @@ function makeHorizonScroll(target,brakePoint) {
             horizonSticky.style.position = 'relative'
             moveContainer.style.width = `100%`;
         }else {
+            moveContainer.style.width = `fit-content`
             horizonContainer.style.height = `${moveContainer.getBoundingClientRect().width - window.innerWidth + window.innerHeight + scrollbarWidth}px`
             horizonSticky.style.height = `100vh`
             horizonSticky.style.position = 'sticky'
-            moveContainer.style.width = `fit-content`
         }
     }
 
