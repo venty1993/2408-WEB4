@@ -1,6 +1,7 @@
 // readme
 
 // 카운트업으로 만들 html 개체에 quokka-unt-up 이라는 클래스를 추가해주세요
+// 목표값은 태그 안에 숫자로 작성 해야하며, 쉼표는 작성하면 안됩니다.(숫자만!)
 
 const quokka = document.getElementsByClassName('quokka-unt-up');
 
@@ -12,6 +13,12 @@ for(let i = 0 ; i < quokka.length ; i++) {
 // for (const element of quokka) {
 //     console.log(element)
 // }
+
+// 이렇게 써야함
+// for (const [index, element] of quokka.entries()){
+//     console.log(`${index}번째 개체는 ${element}이다.`)
+// }
+// 
 
 
 function makeCountUp(target, goal, duration, accFunc = 'ease', frame = 60){

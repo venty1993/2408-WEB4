@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <style>
+        .text {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p class="text">안녕</p>
+    <button class="continue"></button>
+    <script>
+
+            $('.continue').html('Next Step...')
+
+            document.querySelector('.continue').innerHTML ='<p>이게된다고?</p>'
+
+
+
+
+            // $('.continue').on('click',()=>{
+            //     $('.text').css('display','flex');
+            // })
+
+            // js 문법으로 바꿔쓰면?
+
+            const continueButton = document.querySelector('.continue')
+            const textTag = document.querySelector('.text')
+
+            continueButton.addEventListener('click',()=>{
+                textTag.style.display = 'flex'
+            })
+
+
+
+    </script>
+</body>
+</html>
