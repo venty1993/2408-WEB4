@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 5000px;
+        }
+
+        .modal {
+            display: none;
+            width: 300px;
+            height: 200px;
+            border: 1px solid pink;
+
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="modal">
+        이름
+        <input type="text">
+        <button class="close">x</button>
+    </div>
+
+    <button class="open">모달열기</button>
+
+    <script>
+        const modal = document.querySelector('.modal');
+        const openButton = document.querySelector('.open');
+        const closeButton = document.querySelector('.close')
+
+        openButton.addEventListener('click',()=>{
+            modal.style.display = 'block';
+        })
+        
+        closeButton.addEventListener('click',()=>{
+            modal.style.display = 'none';
+        })
+
+        window.addEventListener('click',(e)=>{
+            console.log(e);
+        })
+    </script>
+    <!-- 
+    모달 
+    
+    새창을 띄우는 기존의 팝업을 대체하기위한 장치
+    기존에 탐색하던 웹에서 벗어나지 않고 새로운 컨텐츠를 보여줄수 있어
+    사용자 경험에 긍정적인 영향을 줄 수 있다.
+
+    -->
+
+   
+
+</body>
+</html>
