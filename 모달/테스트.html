@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="../라이브러리화/modal.css">
+</head>
+<body>
+    <button class="hi">안녕하세요</button>
+    <script src="../라이브러리화/modal.js"></script>
+    <script>
+        document.querySelector('.hi').addEventListener('click',()=>{
+            openModal('감사해요','잘있어요 다시만나요');
+        })
+    </script>
+</body>
+</html>

@@ -14,96 +14,58 @@
             height: 5000px;
         }
 
-        .modal {
-            /* display: none; */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 32px;
-            box-sizing: border-box;
-            text-align: center;
-            
-        }
-
-        .modal-text {
-            min-height: 80px;
-        }
-
-        .modal-window {
-            box-sizing: border-box;
-            max-width: 480px;
-            width: 100%;
-
-            background-color: white;
-            border-radius: 16px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .modal-close {
-            width: 240px;
-            padding: 8px;
-            background-color: cadetblue;
-            outline: none;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-        }
     </style>
+    <link rel="stylesheet" href="../라이브러리화/modal.css">
 </head>
 <body>
-    <div class="modal">
-        <div class="modal-window">
-            <h2 class="modal-title">안내사항</h2>
-            <p class="modal-text"> 이거 하고 쉬는시간 10분 가질겁니다</p>
-            <button class="modal-close">확 인</button>
-        </div>
-    </div>
 
     <button class="open">모달열기</button>
+    <button class="menu">메뉴는</button>
 
+    <script src="../라이브러리화/modal.js"></script>
     <script>
-        const modal = document.querySelector('.modal');
+
         const openButton = document.querySelector('.open');
-        const closeButton = document.querySelector('.modal-close')
+
+        document.querySelector('.menu').addEventListener('click',()=>{
+            openModal('메뉴는','대패삼겹 파스타');
+        })
 
         openButton.addEventListener('click',()=>{
-            openModal();
+            openModal('배고파','퇴근하면 밥먹어야지');
         })
+
         
-        closeButton.addEventListener('click',()=>{
-            closeModal();
-        })
 
-        window.addEventListener('click',(e)=>{
-            if(e.target.classList.contains('modal')){
-                closeModal();
-            }
-        })
 
-        window.addEventListener('keydown',(e)=>{
-            if(e.key === 'Escape'){
-                closeModal();
-            }
-        })
 
-        function closeModal(){
-            modal.style.display = 'none';
-        }
 
-        function openModal(){
-            modal.style.display = 'flex';
-        }
+
+        // closeButton.addEventListener('click',()=>{
+        //     closeModal();
+        // })
+
+        // window.addEventListener('click',(e)=>{
+        //     if(e.target.classList.contains('modal')){
+        //         closeModal();
+        //     }
+        // })
+
+        // window.addEventListener('keydown',(e)=>{
+        //     if(e.key === 'Escape'){
+        //         closeModal();
+        //     }
+        // })
+
+        // function closeModal(){
+        //     modal.style.display = 'none';
+        // }
+
+        // function openModal(title,text){
+        //     modalTitle.innerText = title;
+        //     modalText.innerText = text;
+        //     modal.style.display = 'flex';
+        // }
     </script>
     <!-- 
     모달 
