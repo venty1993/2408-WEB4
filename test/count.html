@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span class="count">0</span>
+    <button class="count-button">딸깍</button>
+    <script>
+        const count = document.querySelector('.count');
+        const countButton = document.querySelector('.count-button');
+        let number = 0 ;
+
+        countButton.addEventListener('click',()=>{
+            number++
+            count.innerText = number
+        })
+    </script>
+</body>
+</html>
