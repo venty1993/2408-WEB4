@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="text-input">
+    <button class="apply-button">누르면</button>
+    <p class="text-place">여기에들어가게</p>
+
+    <script>
+        const textInput = document.querySelector('.text-input')
+        const applyButton = document.querySelector('.apply-button')
+        const textPlace = document.querySelector('.text-place')
+
+        applyButton.addEventListener('click',()=>{
+            textPlace.innerText = textInput.value
+        })
+    </script>
+</body>
+</html>
