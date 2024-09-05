@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        section {
+            padding: 0 32px;
+        }
+        .grid-container {
+            display: grid;
+            max-width: 1200px;
+
+            border: 1px solid pink;
+            gap: 24px;
+
+            grid-template-columns: 1fr 1fr 1fr ;
+            grid-template-rows: 500px 200px;
+            margin: 0 auto;
+
+            grid-template-areas: 
+            "box1 box1 box2"
+            "box3 box3 box3";
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px cadetblue solid;
+            box-sizing: border-box;
+        }
+
+        .box1{
+            background-color: red;
+            grid-area: box1;
+        }
+        .box2{
+            background-color: pink;
+            grid-area: box2;
+        }
+        .box3{
+            background-color: blue;
+            grid-area: box3;
+        }
+
+        @media screen and (max-width : 768px) {
+
+            .box1{
+                aspect-ratio: 2/3;
+            }
+            .box2{
+                height: 300px;                
+            }
+
+            .box3{
+                height: 200px;
+            }
+
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas: 
+                            "box1"
+                            "box3"
+                            "box2";
+                }
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <section>
+
+        <div class="grid-container">
+            <div class="box1">1</div>
+            <div class="box2">2</div>
+            <div class="box3">3</div>
+        </div>
+    </section>
+</body>
+</html>
